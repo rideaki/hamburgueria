@@ -44,42 +44,31 @@ public class RequestController {
 
 	@PostMapping
 	public Request create(@RequestBody Request request){
-		if (request == null || request.getProducts() == null || request.getProducts().isEmpty()) {
-			logger.warn("PEDIDO SEM PRODUTO!");
-			return repository.save(request);
-		}
-		request.getProducts().forEach(product -> {
-			if (product == null) {
-				logger.error("PEDIDO COM PRODUTO INVÁLIDO!!!!!!!!!!");
-				return;
-			} else {
-				if(!productRepository.existsById(product.getId())) {
-					logger.error("PRODUTO NÃO ENCONTRADO! É NECESSÁRIO CADASTRAR O PRODUTO ANTES DE FAZER O PEDIDO!!!!!!!!!");
-					return;
-				}
-			}
-		});
+		checkProducts(request);
 		return repository.save(request);
 	}
 
 	@PutMapping
 	public Request update(@RequestBody Request request){
+		checkProducts(request);
+		return repository.save(request);
+	}
+
+	private void checkProducts(Request request) {
 		if (request == null || request.getProducts() == null || request.getProducts().isEmpty()) {
 			logger.warn("PEDIDO SEM PRODUTO!");
-			return repository.save(request);
-		}
-		request.getProducts().forEach(product -> {
-			if (product == null) {
-				logger.error("PEDIDO COM PRODUTO INVÁLIDO!!!!!!!!!!");
-				return;
-			} else {
-				if(!productRepository.existsById(product.getId())) {
-					logger.error("PRODUTO NÃO ENCONTRADO! É NECESSÁRIO CADASTRAR O PRODUTO ANTES DE FAZER O PEDIDO!!!!!!!!!");
-					return;
+		} else {
+			request.getProducts().forEach(product -> {
+				if (product == null) {
+					logger.error("PEDIDO COM PRODUTO INVÁLIDO!!!!!!!!!!");
+				} else {
+					if(!productRepository.existsById(product.getId())) {
+						logger.error("PRODUTO NÃO ENCONTRADO! É NECESSÁRIO CADASTRAR O PRODUTO ANTES DE FAZER O PEDIDO!!!!!!!!!");
+						productRepository.save(product);
+					}
 				}
-			}
-		});
-		return repository.save(request);
+			});
+		}
 	}	
 
 	@DeleteMapping(path ={"/{id}"})
