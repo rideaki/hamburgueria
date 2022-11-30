@@ -13,35 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hamburgueria.dao.OrderRepository;
-import com.hamburgueria.model.Order;
+import com.hamburgueria.dao.RequestRepository;
+import com.hamburgueria.model.Request;
 
 
 @RestController
 @RequestMapping({"hamburgueria/orders"})
-public class OrderController {
+public class RequestController {
 
 	
 	@Autowired
-	private OrderRepository repository;
+	private RequestRepository repository;
 
 	@GetMapping
-	public List<Order> findAll(){
+	public List<Request> findAll(){
 		return repository.findAll();
 	}
 
 	@GetMapping(path = {"/{id}"})
-	public Optional<Order> findById(@PathVariable long id){
+	public Optional<Request> findById(@PathVariable long id){
 		return repository.findById(id);
 	}
 
 	@PostMapping
-	public Order create(@RequestBody Order order){
+	public Request create(@RequestBody Request order){
 		return repository.save(order);
 	}
 
 	@PutMapping
-	public Order update(@RequestBody Order order){
+	public Request update(@RequestBody Request order){
 		return repository.save(order);
 	}	
 

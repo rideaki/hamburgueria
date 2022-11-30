@@ -15,15 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "\"order\"") //order é palavra reservada
-public class Order {
+public class Request {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-//	@OneToOne(cascade = CascadeType.ALL)
-//	private Client client;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Client client;
 
 //	private List<Product> products;
 
