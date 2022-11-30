@@ -1,5 +1,0 @@
-com\hamburgueria\controller\ProductController.class
-com\hamburgueria\HamburgueriaApplication.class
-com\hamburgueria\model\Product.class
-com\hamburgueria\CorsConfiguration.class
-com\hamburgueria\dao\ProductRepository.class
