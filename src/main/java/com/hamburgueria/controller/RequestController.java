@@ -18,7 +18,7 @@ import com.hamburgueria.model.Request;
 
 
 @RestController
-@RequestMapping({"hamburgueria/orders"})
+@RequestMapping({"hamburgueria/requests"})
 public class RequestController {
 
 	
@@ -36,13 +36,13 @@ public class RequestController {
 	}
 
 	@PostMapping
-	public Request create(@RequestBody Request order){
-		return repository.save(order);
+	public Request create(@RequestBody Request request){
+		return repository.save(request);
 	}
 
 	@PutMapping
-	public Request update(@RequestBody Request order){
-		return repository.save(order);
+	public Request update(@RequestBody Request request){
+		return repository.save(request);
 	}	
 
 	@DeleteMapping(path ={"/{id}"})

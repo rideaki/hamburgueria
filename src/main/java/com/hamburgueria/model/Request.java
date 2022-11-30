@@ -44,13 +44,13 @@ public class Request {
 		this.id = id;
 	}
 
-//	public Client getClient() {
-//		return client;
-//	}
-//
-//	public void setClient(Client client) {
-//		this.client = client;
-//	}
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 //	public List<Product> getProducts() {
 //		return products;
