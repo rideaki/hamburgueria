@@ -18,6 +18,9 @@ public class Request {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@Column
+	private String status;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Client client;
@@ -41,6 +44,14 @@ public class Request {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Client getClient() {
